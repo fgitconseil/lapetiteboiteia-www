@@ -1,0 +1,17 @@
+---
+// Served for any unknown path (GitHub Pages serves 404.html).
+// Every URL is root-relative, so it works at any depth.
+import Base from "../layouts/Base.astro";
+---
+<Base title="Page introuvable · La Petite Boîte IA" description="Cette page n'existe pas." chrome="shell" indexable={false}>
+  <section class="band not-found">
+    <div class="container container--text center">
+      <p class="eyebrow">Erreur 404</p>
+      <h1 class="not-found__title">Page introuvable</h1>
+      <p class="section-text">Cette page n'existe pas, ou elle a changé d'adresse.</p>
+      <div class="actions">
+        <a class="btn btn--primary" href="/">Retour à l'accueil</a>
+      </div>
+    </div>
+  </section>
+</Base>

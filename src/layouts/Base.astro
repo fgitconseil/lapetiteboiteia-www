@@ -1,0 +1,114 @@
+---
+import "../styles/tokens.css";
+import "../styles/fonts.css";
+import "../styles/global.css";
+import Logo from "../components/Logo.astro";
+import { APP_URL, SITE_URL } from "../config";
+import { demoUrl, legalLinks, signature } from "../data/landing";
+
+interface Props {
+  title: string;
+  description: string;
+  /**
+   * "landing": the landing header (Se connecter, Discuter) and footer.
+   * "shell": the app shell the legal pages had, restored as is: the logo in
+   * the header, the signature and the legal links in the footer.
+   */
+  chrome?: "landing" | "shell";
+  /** The landing loads the hub script; other pages do not. */
+  hub?: boolean;
+  /** false for the 404 page: no canonical, not indexed. */
+  indexable?: boolean;
+}
+
+const { title, description, chrome = "landing", hub = false, indexable = true } = Astro.props;
+// trailingSlash "never" and build.format "file": /legal/cgu, never /legal/cgu/.
+const path = Astro.url.pathname.replace(/\.html$/, "").replace(/(^|\/)index$/, "$1").replace(/(.)\/$/, "$1") || "/";
+const canonical = new URL(path, SITE_URL).href;
+const ogImage = new URL("/og-image.png", SITE_URL).href;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {!indexable && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="La Petite Boîte IA" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="La Petite Boîte IA. La mémoire gouvernée des IA d'entreprise." />
+    {indexable && <meta property="og:url" content={canonical} />}
+    {indexable && <link rel="canonical" href={canonical} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="preload" href="/fonts/dm-sans-latin-400-700.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-latin-700-800.woff2" as="font" type="font/woff2" crossorigin />
+    {/* Blocking on purpose: sets html[data-flux] before first paint (see the script header). */}
+    {hub && <script is:inline src="/scripts/hub.js"></script>}
+  </head>
+  <body>
+    {chrome === "landing" && <a class="skip-link" href="#contenu">Aller au contenu</a>}
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="/">
+          <Logo />
+          <span>La Petite Boîte IA</span>
+        </a>
+        {chrome === "landing" && (
+          <nav class="site-header__actions" aria-label="Accès">
+            <a class="link-quiet" href={APP_URL}>Se connecter</a>
+            <a class="btn btn--primary btn--small" href={demoUrl} target="_blank" rel="noopener noreferrer">Discuter</a>
+          </nav>
+        )}
+      </div>
+    </header>
+
+    <main id="contenu">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      {chrome === "landing" ? (
+        <div class="container site-footer__inner">
+          <a class="brand brand--footer" href="/">
+            <Logo size="s" />
+            <span>La Petite Boîte IA</span>
+          </a>
+          <div class="site-footer__legal">
+            <nav aria-label="Documents légaux">
+              <ul class="site-footer__links">
+                {legalLinks.map((link) => (
+                  <li><a href={link.href}>{link.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+            <p>La Petite Boîte IA est une offre éditée par <strong>FGIT Conseil</strong>.</p>
+            <p>© 2026 FGIT Conseil. Tous droits réservés.</p>
+          </div>
+        </div>
+      ) : (
+        <div class="container site-footer__inner">
+          <p class="site-footer__signature">
+            <Logo size="s" />
+            <span>{signature}</span>
+          </p>
+          <nav aria-label="Documents légaux">
+            <ul class="site-footer__links">
+              {legalLinks.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      )}
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,220 @@
+---
+import Base from "../layouts/Base.astro";
+import {
+  assistants,
+  comparisons,
+  demoUrl,
+  hubExamples,
+  meta,
+  pillars,
+  questions,
+} from "../data/landing";
+
+const icons = {
+  chat: ["M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"],
+  doc: ["M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z", "M14 2v6h6", "m9 15 2 2 4-4"],
+  lock: ["M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z", "M7 11V7a5 5 0 0 1 10 0v4"],
+} as const;
+---
+<Base title={meta.title} description={meta.description} hub>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container container--narrow hero__inner">
+      <p class="pill"><span class="pill__dot pill__dot--pulse" aria-hidden="true"></span>MÉMOIRE D'ENTREPRISE POUR VOS IA</p>
+      <h1 class="hero__title">Une mémoire qui <em class="accent">ne ment pas.</em></h1>
+      <p class="hero__lead">Le second cerveau de votre entreprise, sans ses défauts.</p>
+      <p class="hero__text">
+        Ce qu'un collaborateur apprend à son assistant sert à toute l'équipe, quel que soit le sien. Et aucune règle validée ne change sans qu'un responsable l'ait décidé.
+      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+        <a class="btn btn--secondary" href="#fonctionnement">Découvrir le fonctionnement</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Le constat -->
+  <section class="band band--white" aria-labelledby="titre-constat">
+    <div class="container container--narrow">
+      <div class="statement">
+        <p class="eyebrow eyebrow--on-dark">Le constat</p>
+        <h2 id="titre-constat" class="statement__title">Vos équipes utilisent l'IA chacun dans son coin.</h2>
+        <p>Chacun y gagne en productivité. Mais ce qu'une personne apprend à son assistant ne sert à personne d'autre, et chacun travaille avec sa propre version des règles.</p>
+        <p>Tout le monde veut construire le second cerveau de l'entreprise. Mais sans cadre, il retient tout, y compris ce qui n'est plus vrai.</p>
+        <p class="statement__punch">Votre IA n'a pas un problème de mémoire. Elle a un problème de vérité.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trois garanties -->
+  <section class="band" aria-labelledby="titre-garanties">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-garanties">Trois garanties pour une mémoire collective</h2>
+        <p>Le second cerveau de l'entreprise, sans projet documentaire à monter.</p>
+      </div>
+      <ul class="pillars">
+        {pillars.map((pillar) => (
+          <li class="card">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                {icons[pillar.icon].map((d) => <path d={d}></path>)}
+              </svg>
+            </span>
+            <h3>{pillar.title}</h3>
+            <p>{pillar.body}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Comment ça marche: central hub, examples on a loop (public/scripts/hub.js).
+       Without JavaScript or under prefers-reduced-motion everything is visible. -->
+  <section id="fonctionnement" class="band band--white" aria-labelledby="titre-fonctionnement">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-fonctionnement">Comment ça marche</h2>
+      </div>
+
+      <div class="hub" data-hub>
+        <svg class="hub-links" aria-hidden="true" focusable="false">
+          {hubExamples.map((_, i) => (
+            <>
+              <path class="hub-line" data-leg="in" data-example={i + 1}></path>
+              <path class="hub-line" data-leg="out" data-example={i + 1}></path>
+            </>
+          ))}
+          <circle class="hub-dot" r="6"></circle>
+        </svg>
+
+        <div class="hub-zone">
+          <div class="hub-legend">
+            <p class="hub-legend__title">Vos équipes</p>
+            <p class="hub-legend__sub">{assistants.join(", ")}…</p>
+          </div>
+          <ol class="hub-cards">
+            {hubExamples.map((example, i) => (
+              <li class="hub-card hub-card--in" data-example={i + 1}>
+                <span class="hub-bubble" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                </span>
+                <span>
+                  <span class="hub-card__text">{example.input}</span>
+                  {example.detail && <span class="hub-card__detail">{example.detail}</span>}
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div class="hub-zone hub-zone--core">
+          <div class="hub-core">
+            <p class="hub-core__name">La Petite Boîte IA</p>
+            <p class="hub-core__tag">Mémoire gouvernée</p>
+            <ol class="hub-terms">
+              {hubExamples.map((example, i) => (
+                <li class="hub-term" data-example={i + 1}>{example.term}</li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div class="hub-zone">
+          <div class="hub-legend">
+            <p class="hub-legend__title">Ce que vos IA répondent</p>
+          </div>
+          <ol class="hub-cards">
+            {hubExamples.map((example, i) => (
+              <li class="hub-card hub-card--out" data-example={i + 1}>
+                <span class="hub-bubble hub-bubble--out" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20 6 9 17l-5-5"></path></svg>
+                </span>
+                <span class="hub-card__text">{example.output}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparatif -->
+  <section id="comparatif" class="band band--white" aria-labelledby="titre-comparatif">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-comparatif">La différence au quotidien</h2>
+        <p>Ce qui change par rapport à un assistant connecté à vos documents.</p>
+      </div>
+      <div class="table-wrap" tabindex="0" role="region" aria-labelledby="titre-comparatif">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th scope="col">Situation</th>
+              <th scope="col">Un assistant connecté à vos documents</th>
+              <th scope="col" class="compare__us">La Petite Boîte IA</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisons.map((row) => (
+              <tr>
+                <th scope="row">{row.situation}</th>
+                <td>{row.assistant}</td>
+                <td class="compare__us">{row.lpbia}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bêta privée -->
+  <section class="band band--line" aria-labelledby="titre-beta">
+    <div class="container container--text center">
+      <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Bêta privée</p>
+      <h2 id="titre-beta">Trois organisations partenaires, cet automne</h2>
+      <p class="section-text">
+        Nous ouvrons cet automne une bêta à trois organisations, pour façonner La Petite Boîte IA avec elles sur leurs cas d'usage réels.
+      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="band band--white band--line" aria-labelledby="titre-faq">
+    <div class="container container--faq">
+      <div class="section-head">
+        <h2 id="titre-faq">Questions fréquentes</h2>
+        <p>Tout ce que vous devez savoir avant de rejoindre la bêta.</p>
+      </div>
+      <div class="faq">
+        {questions.map((item) => (
+          <details class="faq__item">
+            <summary>
+              <span>{item.question}</span>
+              <svg class="faq__chevron" aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" focusable="false"><path d="M19 9l-7 7-7-7"></path></svg>
+            </summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section id="demo" class="band band--glow band--line" aria-labelledby="titre-demo">
+    <div class="container container--narrow center">
+      <h2 id="titre-demo" class="cta-title">Voyez-la en action</h2>
+      <p class="section-text">
+        Une mémoire que partagent deux personnes, sur deux assistants, et qu'un responsable gouverne. Démonstration en 30 minutes.
+      </p>
+      <div class="actions">
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+        <a class="btn btn--secondary" href="#fonctionnement">Revoir le fonctionnement</a>
+      </div>
+    </div>
+  </section>
+</Base>

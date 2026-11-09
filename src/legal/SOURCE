@@ -1,0 +1,7 @@
+# Source of the legal copies in this folder: the app repository (path in
+# LPBIA_REPO), at the commit below. Read by scripts/check-legal.mjs.
+# Never rendered: nothing from this file reaches dist/.
+commit 9db95da2dc38eeeff33173d7d08d26d38dbd6999
+cgu.md legal/lpbia-cgu.md
+cgv.md legal/lpbia-cgv.md
+mentions-legales.md legal/lpbia-mentions-legales.md

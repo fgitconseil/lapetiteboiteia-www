@@ -1,0 +1,84 @@
+/*
+ * tokens.css 1.1.0, charter v4, dark theme to add before app use.
+ *
+ * La Petite Boîte IA design tokens: braise, prune, crème, from
+ * "docs/Démo La Petite Boîte IA.html". Names follow the shadcn convention
+ * (background, foreground, primary...) plus the charter names. Light theme only.
+ *
+ * This file is copied as is into the app repository (D329). Keep it free of
+ * selectors other than :root and of anything site specific. Bump the version
+ * on every change: patch for a value fix, minor for a new token, major for a
+ * renamed or removed token once the app has copied it. (1.1.0 renames the
+ * 1.0.0 names; the app had not copied 1.0.0.)
+ *
+ * Contrast (WCAG 2.2, checked on these values):
+ *   --foreground on --background          15.85  AA, AAA
+ *   --muted-foreground on --background     6.01  AA
+ *   --muted-foreground on --muted          5.31  AA
+ *   --braise-ink on --background           5.63  AA (links, eyebrows)
+ *   --primary-foreground on --primary      5.09  AA (primary buttons)
+ *   --on-dark on --prune                  15.19  AA, AAA
+ *   --brume on --prune                     6.88  AA
+ *   --braise on --prune                    4.64  AA (text on prune only)
+ *   --success on --success-soft            6.76  AA
+ *   --ring on --background                 4.57  focus ring, above 3:1
+ * Do not use: white on braise (3.28), braise text on crème or white (3.12).
+ */
+:root {
+  /* shadcn roles */
+  --background: #FFF8F3;          /* crème */
+  --foreground: #2B1630;          /* ink */
+  --card: #FFFFFF;
+  --primary: #F0602A;             /* braise */
+  --primary-foreground: #2B1630;  /* on-braise */
+  --secondary: #FFFFFF;
+  --muted: #F4E9E8;               /* sable */
+  --muted-foreground: #6E5970;
+  --accent: #FFE3D6;              /* braise-soft */
+  --border: #F0DFD6;
+  --input: #F0DFD6;
+  --ring: #C9461A;
+
+  /* Charter names */
+  --braise: #F0602A;
+  --braise-soft: #FFE3D6;
+  --braise-ink: #B23C10;
+  --prune: #3B1740;
+  --brume: #B7ABB5;
+  --on-braise: #2B1630;
+  --on-dark: #FFFFFF;
+
+  /* Supporting values, derived from the charter */
+  --prune-2: #4A2550;
+  --prune-border: #5A2A60;
+  --success: #155C42;
+  --success-soft: #DBF2E7;
+  --braise-glow: rgba(240, 96, 42, 0.35);
+  --on-dark-fill: rgba(255, 255, 255, 0.06);
+  --on-dark-border: rgba(255, 255, 255, 0.14);
+  --shadow-color: rgba(43, 22, 48, 0.08);
+  --shadow-color-strong: rgba(43, 22, 48, 0.35);
+
+  /* Typography */
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque", "DM Sans", system-ui, sans-serif;
+  --font-accent: "Instrument Serif", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Radii */
+  --radius-s: 0.5625rem;
+  --radius-m: 0.75rem;
+  --radius-l: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 9999px;
+
+  /* Shadows */
+  --shadow-s: 0 1px 2px var(--shadow-color);
+  --shadow-m: 0 10px 28px -12px var(--shadow-color-strong);
+  --shadow-l: 0 24px 48px -24px var(--shadow-color-strong);
+
+  /* Layout */
+  --width-page: 80rem;
+  --width-text: 48rem;
+  --gutter: 1rem;
+}

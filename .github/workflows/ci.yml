@@ -1,0 +1,31 @@
+# Install, type check, build. On every push. No deploy yet.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  ASTRO_TELEMETRY_DISABLED: "1"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      # Reads the exact pnpm version from package.json "packageManager".
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
+      - name: Check output has no third-party origin
+        run: |
+          ! grep -rhoE '(src|href)="https?://[^"]+"' dist --include=*.html \
+            | grep -vE '"https://(www|app)\.lapetiteboiteia\.fr/|"https://calendly\.com/conversation-la-petite-boite-ia/'

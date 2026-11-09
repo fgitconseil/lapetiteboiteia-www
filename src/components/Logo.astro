@@ -1,0 +1,18 @@
+---
+// The charter v4 logo: a box with three rising braise dots.
+interface Props {
+  size?: "m" | "s";
+}
+const { size = "m" } = Astro.props;
+const px = size === "m" ? 24 : 16;
+---
+<span class:list={["logo", `logo--${size}`]} aria-hidden="true">
+  <svg viewBox="0 0 24 24" width={px} height={px} fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+    <path d="M4 14.4V20.5H20V14.4"></path>
+    <path d="M4 14.4 1.9 13.1"></path>
+    <path d="M20 14.4 22.1 13.1"></path>
+    <circle cx="9.6" cy="11" r="1.1" class="logo-dot"></circle>
+    <circle cx="13" cy="8.9" r="1.4" class="logo-dot"></circle>
+    <circle cx="18.5" cy="5.5" r="1.78" class="logo-dot"></circle>
+  </svg>
+</span>

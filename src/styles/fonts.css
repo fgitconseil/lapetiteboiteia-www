@@ -1,0 +1,28 @@
+/*
+ * Self-hosted charter v4 fonts (latin subset, woff2), served from /fonts/.
+ * No request leaves the site. Licences: public/fonts/OFL-*.txt (SIL OFL 1.1).
+ * Source files: Google Fonts, downloaded once on 2026-11-05.
+ */
+@font-face {
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/fonts/dm-sans-latin-400-700.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+  src: url("/fonts/bricolage-grotesque-latin-700-800.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-italic-400.woff2") format("woff2");
+}

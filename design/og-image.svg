@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- og:image source, charter v4 (tokens.css 1.1.0 values). Exported to
+       public/og-image.png with the headless browser; see README. Fonts are
+       the self-hosted ones in public/fonts/, loaded by the export page. -->
+  <rect width="1200" height="630" fill="#FFF8F3"/>
+  <!-- Lockup: logo box + name -->
+  <g transform="translate(96 120)">
+    <rect x="1" y="1" width="110" height="110" rx="28" fill="#FFE3D6" stroke="#F0DFD6" stroke-width="2"/>
+    <g transform="translate(20 20) scale(3)" fill="none" stroke="#B23C10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 14.4V20.5H20V14.4"/>
+      <path d="M4 14.4 1.9 13.1"/>
+      <path d="M20 14.4 22.1 13.1"/>
+      <circle cx="9.6" cy="11" r="1.1" fill="#F0602A" stroke="none"/>
+      <circle cx="13" cy="8.9" r="1.4" fill="#F0602A" stroke="none"/>
+      <circle cx="18.5" cy="5.5" r="1.78" fill="#F0602A" stroke="none"/>
+    </g>
+    <text x="144" y="76" font-family="Bricolage Grotesque" font-weight="700" font-size="56" letter-spacing="-1" fill="#2B1630">La Petite Boîte IA</text>
+  </g>
+  <!-- Tagline -->
+  <text font-family="Bricolage Grotesque" font-weight="800" font-size="72" letter-spacing="-1.5" fill="#2B1630">
+    <tspan x="96" y="368">La mémoire <tspan font-family="Instrument Serif" font-style="italic" font-weight="400" letter-spacing="0" fill="#B23C10" font-size="80">gouvernée</tspan></tspan>
+    <tspan x="96" y="452">des IA d'entreprise.</tspan>
+  </text>
+  <!-- Prune band -->
+  <rect y="550" width="1200" height="80" fill="#3B1740"/>
+  <text x="96" y="600" font-family="DM Sans" font-weight="500" font-size="26" fill="#B7ABB5">www.lapetiteboiteia.fr</text>
+  <circle cx="1040" cy="590" r="7" fill="#F0602A"/>
+  <circle cx="1068" cy="580" r="9" fill="#F0602A"/>
+  <circle cx="1102" cy="566" r="11" fill="#F0602A"/>
+</svg>

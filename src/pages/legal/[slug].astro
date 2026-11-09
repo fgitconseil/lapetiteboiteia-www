@@ -1,0 +1,44 @@
+---
+// The legal documents, rendered verbatim from src/legal/*.md, copies of the
+// app repository's legal texts (source commit in src/legal/SOURCE, never
+// rendered). Same paths as the app: /legal/<id>, no trailing slash.
+// `pnpm check:legal` compares CGU and CGV with the sources.
+import type { GetStaticPaths, MarkdownInstance } from "astro";
+import Base from "../../layouts/Base.astro";
+
+type LegalDoc = MarkdownInstance<Record<string, never>>;
+
+/** Page title of each document. */
+const titles: Record<string, string> = {
+  cgu: "Conditions d'utilisation",
+  cgv: "Conditions de vente",
+  "mentions-legales": "Mentions légales",
+};
+
+export const getStaticPaths = (() => {
+  const files = import.meta.glob<LegalDoc>("../../legal/*.md", { eager: true });
+  return Object.entries(files).map(([path, doc]) => {
+    const slug = path.split("/").pop()?.replace(/\.md$/, "") ?? "";
+    return { params: { slug }, props: { doc } };
+  });
+}) satisfies GetStaticPaths;
+
+interface Props {
+  doc: LegalDoc;
+}
+
+const { doc } = Astro.props;
+const { slug } = Astro.params;
+const title = slug ? titles[slug] : undefined;
+if (!title) {
+  throw new Error(`legal: no title declared for "${slug}"`);
+}
+const { Content } = doc;
+---
+<Base title={`${title} · La Petite Boîte IA`} description={`${title} de La Petite Boîte IA, une offre éditée par FGIT Conseil.`} chrome="shell">
+  <div class="band">
+    <article class="container container--text legal">
+      <Content />
+    </article>
+  </div>
+</Base>
