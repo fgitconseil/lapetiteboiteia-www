@@ -667,7 +667,7 @@ a {
 }
 
 .hub-bubble--out {
-  background: var(--success-soft);
+  background: var(--success-subtle);
   color: var(--success);
 }
 

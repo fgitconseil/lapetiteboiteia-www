@@ -31,6 +31,10 @@ const ogImage = new URL("/og-image.png", SITE_URL).href;
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+    {/* GitHub Pages sets no headers, so the policy is a meta tag: same origin only.
+        Nothing inline exists to allow (inlineStylesheets "never", hub.js is a file);
+        hub.js sets styles through the CSSOM, which style-src does not block. */}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />

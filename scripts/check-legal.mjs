@@ -2,8 +2,11 @@
 // sources in the app repository. The app asks users to accept these two texts
 // by SHA-256, so a drift here would show a text nobody accepted.
 //
-// Mentions légales are excluded on purpose: they name the site's host, and
-// that line will differ between this site and the app.
+// Only the CGU and CGV are checked. The mentions légales are excluded on
+// purpose: their Article 2 names the host. This site moves to GitHub Pages
+// while the app stays on its own server, so the site's copy will name a
+// different host than the app's copy, and a byte comparison would always
+// fail. They are still copied from the app repository; review them by hand.
 //
 // The app repository is private and not part of this one: give its local path
 // in LPBIA_REPO. The file mapping and the source commit are in src/legal/SOURCE.
