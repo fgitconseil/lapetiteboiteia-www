@@ -353,18 +353,6 @@ a {
   }
 }
 
-/* Very small phones: the brand name would push the buttons off screen. */
-@media (max-width: 379px) {
-  .brand > span:last-child {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-}
-
 .logo {
   display: grid;
   place-items: center;
