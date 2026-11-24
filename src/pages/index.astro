@@ -20,14 +20,12 @@ const icons = {
   <!-- Hero -->
   <section class="hero">
     <div class="container container--narrow hero__inner">
-      <p class="pill"><span class="pill__dot pill__dot--pulse" aria-hidden="true"></span>MÉMOIRE D'ENTREPRISE POUR VOS IA</p>
+      <p class="pill"><span class="pill__dot pill__dot--pulse" aria-hidden="true"></span>RH · CONFORMITÉ · MÉTHODES</p>
       <h1 class="hero__title">Une mémoire qui <em class="accent">ne ment pas.</em></h1>
-      <p class="hero__lead">Le second cerveau de votre entreprise, sans ses défauts.</p>
-      <p class="hero__text">
-        Ce qu'un collaborateur apprend à son assistant sert à toute l'équipe, quel que soit le sien. Et aucune règle validée ne change sans qu'un responsable l'ait décidé.
-      </p>
+      <p class="hero__lead">Ce que vos équipes choisissent de partager avec leurs assistants IA devient une règle d'entreprise à jour, tranchée par vos responsables, pas par la machine, et servie à tous.</p>
+      <p class="hero__text">Seuls les désaccords remontent. Tout le reste entre seul.</p>
       <div class="actions">
-        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo en 30 minutes</a>
         <a class="btn btn--secondary" href="#fonctionnement">Découvrir le fonctionnement</a>
       </div>
     </div>
@@ -38,20 +36,19 @@ const icons = {
     <div class="container container--narrow">
       <div class="statement">
         <p class="eyebrow eyebrow--on-dark">Le constat</p>
-        <h2 id="titre-constat" class="statement__title">Vos équipes utilisent l'IA chacun dans son coin.</h2>
-        <p>Chacun y gagne en productivité. Mais ce qu'une personne apprend à son assistant ne sert à personne d'autre, et chacun travaille avec sa propre version des règles.</p>
-        <p>Tout le monde veut construire le second cerveau de l'entreprise. Mais sans cadre, il retient tout, y compris ce qui n'est plus vrai.</p>
-        <p class="statement__punch">Votre IA n'a pas un problème de mémoire. Elle a un problème de vérité.</p>
+        <h2 id="titre-constat" class="statement__title">Vos assistants citent un vieux PDF.</h2>
+        <p>L'IA fonctionne très bien pour chacun. Le passage au collectif, lui, bute. On lance un projet documentaire, et quelques mois plus tard les assistants citent une règle périmée. Un expert corrige une réponse, et sa correction reste dans son coin. Et le jour où une équipe partage une mémoire, c'est le dernier qui a parlé qui a raison.</p>
+        <p class="statement__punch">Votre IA n'a pas un problème de mémoire. Elle a un problème de vérité : personne ne tranche.</p>
       </div>
     </div>
   </section>
 
-  <!-- Trois garanties -->
+  <!-- Garanties -->
   <section class="band" aria-labelledby="titre-garanties">
     <div class="container">
       <div class="section-head">
-        <h2 id="titre-garanties">Trois garanties pour une mémoire collective</h2>
-        <p>Le second cerveau de l'entreprise, sans projet documentaire à monter.</p>
+        <h2 id="titre-garanties">Vos responsables tranchent, vos IA s'alignent.</h2>
+        <p>Sans projet documentaire à monter : on part de vos documents existants.</p>
       </div>
       <ul class="pillars">
         {pillars.map((pillar) => (
@@ -66,6 +63,7 @@ const icons = {
           </li>
         ))}
       </ul>
+      <p class="section-text center">Aucune règle validée ne change sans qu'un responsable l'ait décidé.</p>
     </div>
   </section>
 
@@ -111,7 +109,7 @@ const icons = {
         <div class="hub-zone hub-zone--core">
           <div class="hub-core">
             <p class="hub-core__name">La Petite Boîte IA</p>
-            <p class="hub-core__tag">Mémoire gouvernée</p>
+            <p class="hub-core__tag">Mémoire arbitrée</p>
             <ol class="hub-terms">
               {hubExamples.map((example, i) => (
                 <li class="hub-term" data-example={i + 1}>{example.term}</li>
@@ -136,6 +134,7 @@ const icons = {
           </ol>
         </div>
       </div>
+      <p class="section-text center">Exemple fictif : une tutrice propose 3 arrivants par tuteur, la règle dit 2 depuis un incident. La proposition attend la responsable ; d'ici là, tout le monde reçoit 2.</p>
     </div>
   </section>
 
@@ -144,14 +143,14 @@ const icons = {
     <div class="container">
       <div class="section-head">
         <h2 id="titre-comparatif">La différence au quotidien</h2>
-        <p>Ce qui change par rapport à un assistant connecté à vos documents.</p>
+        <p>Ce qui change quand deux versions d'une règle s'opposent.</p>
       </div>
       <div class="table-wrap" tabindex="0" role="region" aria-labelledby="titre-comparatif">
         <table class="compare">
           <thead>
             <tr>
               <th scope="col">Situation</th>
-              <th scope="col">Un assistant connecté à vos documents</th>
+              <th scope="col">Une mémoire partagée classique</th>
               <th scope="col" class="compare__us">La Petite Boîte IA</th>
             </tr>
           </thead>
@@ -169,16 +168,16 @@ const icons = {
     </div>
   </section>
 
-  <!-- Bêta privée -->
-  <section class="band band--line" aria-labelledby="titre-beta">
+  <!-- Premiers pilotes -->
+  <section class="band band--line" aria-labelledby="titre-pilotes">
     <div class="container container--text center">
-      <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Bêta privée</p>
-      <h2 id="titre-beta">Trois organisations partenaires, cet automne</h2>
+      <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Premiers pilotes</p>
+      <h2 id="titre-pilotes">Où nous en sommes</h2>
       <p class="section-text">
-        Nous ouvrons cet automne une bêta à trois organisations, pour façonner La Petite Boîte IA avec elles sur leurs cas d'usage réels.
+        La démo est prête. Nous lançons nos premiers pilotes avec des directions RH, conformité et méthodes, sur leurs propres règles.
       </p>
       <div class="actions">
-        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Rejoindre les premiers pilotes</a>
       </div>
     </div>
   </section>
@@ -188,7 +187,7 @@ const icons = {
     <div class="container container--faq">
       <div class="section-head">
         <h2 id="titre-faq">Questions fréquentes</h2>
-        <p>Tout ce que vous devez savoir avant de rejoindre la bêta.</p>
+        <p>Tout ce que vous devez savoir avant de rejoindre les premiers pilotes.</p>
       </div>
       <div class="faq">
         {questions.map((item) => (
@@ -207,12 +206,12 @@ const icons = {
   <!-- CTA final -->
   <section id="demo" class="band band--glow band--line" aria-labelledby="titre-demo">
     <div class="container container--narrow center">
-      <h2 id="titre-demo" class="cta-title">Voyez-la en action</h2>
+      <h2 id="titre-demo" class="cta-title">Voyez-la trancher</h2>
       <p class="section-text">
-        Une mémoire que partagent deux personnes, sur deux assistants, et qu'un responsable gouverne. Démonstration en 30 minutes.
+        Une tutrice, une règle, une responsable qui décide : la démo complète en 30 minutes.
       </p>
       <div class="actions">
-        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo (30 min)</a>
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Réserver la démo</a>
         <a class="btn btn--secondary" href="#fonctionnement">Revoir le fonctionnement</a>
       </div>
     </div>
