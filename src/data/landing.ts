@@ -1,7 +1,8 @@
-// Landing copy, verbatim from the app repository's gabarits/landing.html.
-// Keep every string as in the source. See CLAUDE.md.
+// Landing copy, verbatim from the arbitration positioning brief of 2026-11-24
+// (it replaces the copy first taken from the app's gabarits/landing.html).
+// Keep every string as written there. See CLAUDE.md.
 
-/** Assistants that are connected and tested. Card 1, FAQ 2 and the hub label read them here. */
+/** Assistants that are connected and tested. Card 3, FAQ 5 and the hub label read them here. */
 export const assistants: readonly string[] = ["Claude", "Le Chat de Mistral"];
 
 /** Booking link shared by every « Voir la démo » call to action. A plain link: no embed, no script. */
@@ -18,7 +19,7 @@ export function enumerate(items: readonly string[], conjunction: string): string
 export const meta = {
   title: "La Petite Boîte IA · Une mémoire qui ne ment pas",
   description:
-    "La mémoire gouvernée de vos IA. Ce qu'un collaborateur apprend à son assistant sert à toute l'équipe, et aucune règle validée ne change sans un responsable.",
+    "Ce que vos équipes choisissent de partager avec leurs assistants IA devient une règle d'entreprise à jour, tranchée par vos responsables, pas par la machine.",
 } as const;
 
 export interface Pillar {
@@ -29,19 +30,19 @@ export interface Pillar {
 
 export const pillars: readonly Pillar[] = [
   {
+    icon: "lock",
+    title: "La contradiction est bloquée",
+    body: "Quand une information contredit une règle en vigueur, elle n'entre pas. En attendant, tout le monde continue de recevoir la règle validée.",
+  },
+  {
     icon: "chat",
-    title: "Une mémoire collective, quel que soit l'assistant",
-    body: `Ce qu'une personne apprend à son IA sert à ses collègues, qu'ils utilisent ${enumerate(assistants, "ou")}. Aucun nouvel outil à adopter.`,
+    title: "Le bon responsable tranche",
+    body: "Le désaccord part à la personne qui porte déjà le sujet : RH, conformité, chef d'atelier. Pas de revue de toute la base : elle ne voit que les désaccords.",
   },
   {
     icon: "doc",
-    title: "Rien n'est écrasé",
-    body: "Quand une information contredit une règle validée, elle attend la décision du responsable métier. L'ancienne version reste dans l'historique.",
-  },
-  {
-    icon: "lock",
-    title: "Les savoirs d'une équipe restent dans l'équipe",
-    body: "Les RH gardent leurs règles, la Production les siennes.",
+    title: "Tous vos assistants s'alignent",
+    body: `La règle tranchée est servie aux assistants déjà déployés, ${enumerate(assistants, "et")} aujourd'hui, avec sa source. Une règle remplacée sort des réponses, jamais de l'historique.`,
   },
 ];
 
@@ -60,16 +61,16 @@ export const hubExamples: readonly HubExample[] = [
     output: "Commande des EPI : au plus tard le mercredi. Partagé avec toute l'équipe, dès qu'un tuteur l'a appris à son assistant.",
   },
   {
-    term: "Compare",
-    input: "« Combien de temps dure la formation sécurité ? »",
-    detail: "un responsable, dans Claude",
-    output: "Formation sécurité : 4 h depuis le 1er octobre, validée par le responsable. La version à 3 h reste dans l'historique.",
-  },
-  {
-    term: "Soumet au responsable",
+    term: "Bloque et soumet au responsable",
     input: "« Un tuteur peut accompagner 3 nouveaux arrivants. »",
     detail: "un tuteur",
     output: "Contradiction signalée : la règle validée (2 arrivants) reste la réponse sûre. La nouvelle affirmation attend le responsable.",
+  },
+  {
+    term: "Sert la règle tranchée",
+    input: "« Combien de temps dure la formation sécurité ? »",
+    detail: "un responsable, dans Claude",
+    output: "Formation sécurité : 4 h depuis le 1er octobre, validée par le responsable. La version à 3 h reste dans l'historique.",
   },
   {
     term: "Dit ce qu'elle ne sait pas",
@@ -87,34 +88,29 @@ export interface Comparison {
 
 export const comparisons: readonly Comparison[] = [
   {
-    situation: "Ce qu'un collaborateur apprend",
-    assistant: "Reste dans sa conversation",
-    lpbia: "Sert à toute l'équipe, quel que soit son assistant",
+    situation: "Une correction contredit une règle",
+    assistant: "Retenue telle quelle : le dernier qui a parlé a raison",
+    lpbia: "Bloquée, le responsable du sujet tranche",
   },
   {
-    situation: "Deux versions d'une même règle",
-    assistant: "Renvoie les passages les plus proches, toutes versions mêlées",
-    lpbia: "Sert la règle en vigueur ; la nouvelle version attend la décision du responsable",
+    situation: "Qui relit",
+    assistant: "Tout le monde, ou personne",
+    lpbia: "Seulement les désaccords, par le bon responsable",
   },
   {
-    situation: "Une information contredit une règle",
-    assistant: "Rien ne la distingue d'une information fiable",
-    lpbia: "Signalée, soumise au responsable, jamais écrasée",
+    situation: "Une règle est remplacée",
+    assistant: "Les deux versions se mélangent",
+    lpbia: "L'ancienne sort des réponses, reste dans l'historique",
   },
   {
-    situation: "Fraîcheur des règles",
-    assistant: "Pas de statut ni de date de validité",
-    lpbia: "Chaque règle porte son statut et sa date",
+    situation: "D'où vient la réponse",
+    assistant: "Pas toujours dit",
+    lpbia: "Source et auteur, à chaque fois",
   },
   {
-    situation: "Origine de l'information",
-    assistant: "Cite le document",
-    lpbia: "Cite la phrase d'origine, le document et l'historique des versions",
-  },
-  {
-    situation: "Dépendance à un éditeur",
-    assistant: "La mémoire reste dans l'outil de l'éditeur",
-    lpbia: "Une mémoire unique, servie à plusieurs assistants",
+    situation: "L'information manque",
+    assistant: "L'IA invente",
+    lpbia: "Elle le dit, et la question remonte",
   },
 ];
 
@@ -123,41 +119,36 @@ export interface Question {
   readonly answer: string;
 }
 
-// FAQ 4 (hosting in Europe): Hetzner, Helsinki, as the legal notice states.
+// FAQ 6 (data in Europe): Hetzner, Helsinki, as the legal notice states.
 export const questions: readonly Question[] = [
   {
-    question: "Est-ce un « Corporate Brain » ?",
+    question: "Est-ce un « company brain » de plus ?",
     answer:
-      "Oui, avec une différence. Un Corporate Brain classique retient tout, y compris ce qui n'est plus vrai. La Petite Boîte IA distingue ce qui est validé, ce qui attend une décision et ce qui ne vaut plus. Et elle se met en place sans projet documentaire : vos pages existantes s'importent, et vos équipes l'enrichissent en parlant à leur assistant.",
+      "Non. Un company brain retient tout, y compris ce qui n'est plus vrai, ou laisse l'IA réconcilier seule. Ici, quand deux versions s'opposent, c'est votre responsable qui tranche.",
   },
   {
-    question: "Et si mes équipes n'utilisent pas le même assistant ?",
-    answer: `La mémoire ne dépend pas de l'assistant. Aujourd'hui, ${enumerate(assistants, "et")} y sont connectés. Ce qu'un collaborateur apprend dans l'un est disponible dans l'autre.`,
+    question: "Mon responsable va-t-il passer ses journées à valider ?",
+    answer:
+      "Non. Seuls les désaccords lui remontent, et seulement ceux de son sujet. Tout ce qui ne contredit rien entre seul.",
   },
   {
-    question: "Que se passe-t-il quand la mémoire ne sait pas ?",
+    question: "Vous écoutez nos salariés ?",
     answer:
-      "Elle le signale à l'assistant, qui peut vous dire que l'information n'existe pas au lieu d'en inventer une. La question rejoint les connaissances manquantes, pour que le responsable sache quoi capitaliser ensuite.",
+      "Non. Seul ce qu'un collaborateur demande à son assistant de retenir pour l'équipe entre dans la mémoire, avec son nom. Rien n'entre à son insu.",
   },
   {
-    question: "Comment sont gérés les accès et la confidentialité ?",
+    question: "Faut-il un projet documentaire ?",
     answer:
-      "Les savoirs d'une équipe restent dans l'équipe : les autres équipes n'y accèdent pas. La plateforme est hébergée en Europe.",
+      "Non. On part de vos documents existants, et la mémoire s'améliore ensuite avec le terrain.",
   },
   {
-    question: "Et si le savoir n'est écrit nulle part ?",
-    answer:
-      "Le savoir qui vit dans la tête d'un expert ne s'importe pas : il se capte. Notre Mission Savoir Critique le recueille en deux ateliers d'1h30 pour remplir la mémoire dès le départ.",
+    question: "Avec quels assistants ?",
+    answer: `${enumerate(assistants, "et")} aujourd'hui, directement dans les outils de vos équipes. Une offre Starter inclut aussi un espace de discussion, sans la DSI.`,
   },
   {
-    question: "Combien de temps prend la mise en place ?",
+    question: "Où sont mes données ?",
     answer:
-      "Pour la bêta, nous l'organisons avec vous : import de vos pages existantes, ouverture des accès, prise en main du cockpit par le responsable. Le calendrier se fixe ensemble, selon votre périmètre.",
-  },
-  {
-    question: "Qu'est-ce qui arrive ensuite ?",
-    answer:
-      "Notre feuille de route prévoit la connexion à votre annuaire d'entreprise, l'export complet de votre mémoire et un tableau de bord de sa santé. Les partenaires de la bêta participent à leur priorisation.",
+      "En Europe. Chaque entreprise a son espace séparé, et vos connaissances restent votre propriété.",
   },
 ];
 
