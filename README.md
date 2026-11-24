@@ -13,7 +13,7 @@ third-party request, so no cookie banner.
 | `src/data/landing.ts` | Its copy, verbatim |
 | `src/pages/legal/[slug].astro` | `/legal/cgu`, `/legal/cgv`, `/legal/mentions-legales`, in the app shell they had (logo, signature, legal links) |
 | `src/pages/404.astro` | The 404 page, built as `dist/404.html` |
-| `src/config.ts` | `SITE_URL` and `APP_URL` (« Se connecter »), the only absolute URLs of the site |
+| `src/config.ts` | `SITE_URL`, the only absolute URL of the site. The site has no link to the app |
 | `src/legal/*.md` | Copies of the app repository's legal texts, unchanged |
 | `src/legal/SOURCE` | Where each copy comes from in the app repository, and the source commit. Never rendered |
 | `src/styles/tokens.css` | Design tokens, charter v4, shadcn names, light theme only, versioned. Copied into the app repository |
@@ -68,9 +68,9 @@ GitHub Pages sets no HTTP headers of ours, so the Content-Security-Policy is a
 
 ### Prerequisites
 
-- **The app answers at `APP_URL`** (`https://app.lapetiteboiteia.fr/`, in
-  `src/config.ts`). « Se connecter » points there, and today's app on `www`
-  stops being reachable at step 2. `www` does not switch before that.
+- **The app answers at its own address** (`app.lapetiteboiteia.fr`). The
+  site has no link to it, and today's app on `www` stops being reachable at
+  step 2. `www` does not switch before that.
 - **Domain verified at organization level**, before any custom domain is set,
   so no other GitHub account can claim it: organization **Settings** →
   **Pages** → **Add a domain** → `lapetiteboiteia.fr`, then a DNS TXT record
@@ -91,7 +91,7 @@ pointing at the current server.
 
 ### Step 2: www and apex
 
-Once the page is validated on `preview` and the app answers at `APP_URL`:
+Once the page is validated on `preview` and the app answers at its own address:
 
 | Record | Name | Value |
 | --- | --- | --- |

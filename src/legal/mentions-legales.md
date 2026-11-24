@@ -20,11 +20,7 @@ Contact : LinkedIn (La Petite Boîte IA et Fayaz Goulam).
 
 ## Article 2 — Hébergement
 
-Le site et l'application (base de données, serveur MCP, instances de traitement) sont hébergés sur la même infrastructure :
-
-**Hetzner Online GmbH**
-Industriestr. 25, 91710 Gunzenhausen, Allemagne
-Serveur de production : CX43, région Helsinki (Finlande)
+Le site www.lapetiteboiteia.fr est hébergé par GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis (https://support.github.com). L'application est hébergée par Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Allemagne.
 
 ---
 

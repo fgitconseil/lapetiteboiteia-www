@@ -3,14 +3,14 @@ import "../styles/tokens.css";
 import "../styles/fonts.css";
 import "../styles/global.css";
 import Logo from "../components/Logo.astro";
-import { APP_URL, SITE_URL } from "../config";
+import { SITE_URL } from "../config";
 import { demoUrl, legalLinks, signature } from "../data/landing";
 
 interface Props {
   title: string;
   description: string;
   /**
-   * "landing": the landing header (Se connecter, Discuter) and footer.
+   * "landing": the landing header (Discuter) and footer. No link to the app.
    * "shell": the app shell the legal pages had, restored as is: the logo in
    * the header, the signature and the legal links in the footer.
    */
@@ -68,7 +68,6 @@ const ogImage = new URL("/og-image.png", SITE_URL).href;
         </a>
         {chrome === "landing" && (
           <nav class="site-header__actions" aria-label="Accès">
-            <a class="link-quiet" href={APP_URL}>Se connecter</a>
             <a class="btn btn--primary btn--small" href={demoUrl} target="_blank" rel="noopener noreferrer">Discuter</a>
           </nav>
         )}

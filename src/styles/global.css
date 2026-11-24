@@ -222,21 +222,6 @@ a {
   box-shadow: none;
 }
 
-.link-quiet {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.75rem;
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: var(--muted-foreground);
-  text-decoration: none;
-}
-
-.link-quiet:hover {
-  color: var(--foreground);
-  text-decoration: underline;
-}
-
 /* ---------- Pills and eyebrows ---------- */
 .pill {
   display: inline-flex;
