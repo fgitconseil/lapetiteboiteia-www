@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "check": "astro check && tsc -p tsconfig.scripts.json",
+    "check": "astro check",
     "check:legal": "node scripts/check-legal.mjs",
     "build": "astro build",
     "preview": "astro preview"

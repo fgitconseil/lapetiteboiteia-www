@@ -18,8 +18,8 @@
   </g>
   <!-- Tagline -->
   <text font-family="Bricolage Grotesque" font-weight="800" font-size="72" letter-spacing="-1.5" fill="#2B1630">
-    <tspan x="96" y="368">Une mémoire qui</tspan>
-    <tspan x="96" y="452" font-family="Instrument Serif" font-style="italic" font-weight="400" letter-spacing="0" fill="#B23C10" font-size="80">ne ment pas.</tspan>
+    <tspan x="96" y="368">Vos équipes apprennent.</tspan>
+    <tspan x="96" y="452" font-family="Instrument Serif" font-style="italic" font-weight="400" letter-spacing="0" fill="#B23C10" font-size="80">Vos responsables tranchent.</tspan>
   </text>
   <!-- Prune band -->
   <rect y="550" width="1200" height="80" fill="#3B1740"/>

@@ -15,13 +15,11 @@ interface Props {
    * the header, the signature and the legal links in the footer.
    */
   chrome?: "landing" | "shell";
-  /** The landing loads the hub script; other pages do not. */
-  hub?: boolean;
   /** false for the 404 page: no canonical, not indexed. */
   indexable?: boolean;
 }
 
-const { title, description, chrome = "landing", hub = false, indexable = true } = Astro.props;
+const { title, description, chrome = "landing", indexable = true } = Astro.props;
 // trailingSlash "never" and build.format "file": /legal/cgu, never /legal/cgu/.
 const path = Astro.url.pathname.replace(/\.html$/, "").replace(/(^|\/)index$/, "$1").replace(/(.)\/$/, "$1") || "/";
 const canonical = new URL(path, SITE_URL).href;
@@ -32,8 +30,7 @@ const ogImage = new URL("/og-image.png", SITE_URL).href;
   <head>
     <meta charset="utf-8" />
     {/* GitHub Pages sets no headers, so the policy is a meta tag: same origin only.
-        Nothing inline exists to allow (inlineStylesheets "never", hub.js is a file);
-        hub.js sets styles through the CSSOM, which style-src does not block. */}
+        Nothing inline exists to allow (inlineStylesheets "never", no script). */}
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; form-action 'self'" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
@@ -47,7 +44,7 @@ const ogImage = new URL("/og-image.png", SITE_URL).href;
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="La Petite Boîte IA. Une mémoire qui ne ment pas." />
+    <meta property="og:image:alt" content="La Petite Boîte IA. Vos équipes apprennent. Vos responsables tranchent." />
     {indexable && <meta property="og:url" content={canonical} />}
     {indexable && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -55,8 +52,6 @@ const ogImage = new URL("/og-image.png", SITE_URL).href;
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
     <link rel="preload" href="/fonts/dm-sans-latin-400-700.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/bricolage-grotesque-latin-700-800.woff2" as="font" type="font/woff2" crossorigin />
-    {/* Blocking on purpose: sets html[data-flux] before first paint (see the script header). */}
-    {hub && <script is:inline src="/scripts/hub.js"></script>}
   </head>
   <body>
     {chrome === "landing" && <a class="skip-link" href="#contenu">Aller au contenu</a>}

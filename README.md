@@ -1,16 +1,17 @@
 # lapetiteboiteia-www
 
 The public landing of La Petite Boîte IA, for `www.lapetiteboiteia.fr`
-(register line D329). A static Astro site: the build is plain HTML, CSS,
-fonts and one first-party script in `dist/`. No analytics, no cookies, no
+(register line D329). A static Astro site: the build is plain HTML, CSS
+and fonts in `dist/`, with no script. No analytics, no cookies, no
 third-party request, so no cookie banner.
 
 ## Contents
 
 | Path | What |
 | --- | --- |
-| `src/pages/index.astro` | The landing, ported from the app repository's landing template |
-| `src/data/landing.ts` | Its copy, verbatim |
+| `docs/site-accueil-copy-v2.md` | The source of the site copy (§ 2), validated 2026-11-26 |
+| `src/pages/index.astro` | The landing: hero, three static scenes, cards, comparison, audiences, pricing, beta, FAQ, final call |
+| `src/data/landing.ts` | Its copy, verbatim from `docs/site-accueil-copy-v2.md` § 2 |
 | `src/pages/legal/[slug].astro` | `/legal/cgu`, `/legal/cgv`, `/legal/mentions-legales`, in the app shell they had (logo, signature, legal links) |
 | `src/pages/404.astro` | The 404 page, built as `dist/404.html` |
 | `src/config.ts` | `SITE_URL`, the only absolute URL of the site. The site has no link to the app |
@@ -18,7 +19,6 @@ third-party request, so no cookie banner.
 | `src/legal/SOURCE` | Where each copy comes from in the app repository, and the source commit. Never rendered |
 | `src/styles/tokens.css` | Design tokens, charter v4, shadcn names, light theme only, versioned. Copied into the app repository |
 | `src/styles/fonts.css`, `public/fonts/` | Self-hosted fonts (DM Sans, Bricolage Grotesque, Instrument Serif), SIL OFL 1.1 |
-| `public/scripts/hub.js` | The "Comment ça marche" animation. Optional: the page is complete without it |
 | `design/og-image.svg`, `public/og-image.png` | The 1200x630 sharing image: SVG source, PNG export |
 
 The legal texts are owned by the app repository. To update them, copy the
@@ -48,7 +48,7 @@ Node 22.22 or later (`.nvmrc`) and pnpm 10.34.9 (`packageManager`, via
 
     export ASTRO_TELEMETRY_DISABLED=1   # Astro CLI telemetry off
     pnpm install --frozen-lockfile
-    pnpm check                          # astro check + strict type check of hub.js
+    pnpm check                          # astro check, TypeScript strict
     pnpm build                          # writes dist/
 
 CI (`.github/workflows/ci.yml`) runs the same three steps on every push, and
