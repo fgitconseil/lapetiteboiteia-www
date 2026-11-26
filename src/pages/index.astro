@@ -1,13 +1,21 @@
 ---
 import Base from "../layouts/Base.astro";
 import {
-  assistants,
   comparisons,
+  contributions,
+  contributionsClosing,
   demoUrl,
-  hubExamples,
   meta,
-  pillars,
+  offerLabels,
+  offers,
+  pricingReassurance,
+  pricingTokens,
   questions,
+  sceneVisuals,
+  scenes,
+  scenesClosing,
+  scenesPrologue,
+  terrains,
 } from "../data/landing";
 
 const icons = {
@@ -15,126 +23,110 @@ const icons = {
   doc: ["M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z", "M14 2v6h6", "m9 15 2 2 4-4"],
   lock: ["M5 11h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z", "M7 11V7a5 5 0 0 1 10 0v4"],
 } as const;
+
+const [spark, block, align] = scenes;
+const v = sceneVisuals;
 ---
-<Base title={meta.title} description={meta.description} hub>
+<Base title={meta.title} description={meta.description}>
   <!-- Hero -->
   <section class="hero">
     <div class="container container--narrow hero__inner">
-      <p class="pill"><span class="pill__dot pill__dot--pulse" aria-hidden="true"></span>RH · CONFORMITÉ · MÉTHODES</p>
-      <h1 class="hero__title">Une mémoire qui <em class="accent">ne ment pas.</em></h1>
-      <p class="hero__lead">Ce que vos équipes choisissent de partager avec leurs assistants IA devient une règle d'entreprise à jour, tranchée par vos responsables, pas par la machine, et servie à tous.</p>
-      <p class="hero__text">Seuls les désaccords remontent. Tout le reste entre seul.</p>
+      <p class="pill"><span class="pill__dot pill__dot--pulse" aria-hidden="true"></span>Quand la règle change, et pas le document</p>
+      <h1 class="hero__title">“Votre outil m'a dit oui.” Ce jour-là, <em class="accent">c'est vous qu'on regarde.</em></h1>
+      <p class="hero__lead">Quand une information contredit une règle en vigueur, La Petite Boîte IA la bloque et l'envoie au responsable du sujet. Il décide, et les assistants de vos équipes donnent la même réponse, avec sa source.</p>
+      <p class="hero__text">Seuls les désaccords remontent. Le reste entre directement.</p>
       <div class="actions">
         <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo en 30 minutes</a>
-        <a class="btn btn--secondary" href="#fonctionnement">Découvrir le fonctionnement</a>
+        <a class="btn btn--secondary" href="#fonctionnement">Voir comment ça se passe</a>
       </div>
     </div>
   </section>
 
-  <!-- Le constat -->
-  <section class="band band--white" aria-labelledby="titre-constat">
-    <div class="container container--narrow">
-      <div class="statement">
-        <p class="eyebrow eyebrow--on-dark">Le constat</p>
-        <h2 id="titre-constat" class="statement__title">Vos assistants citent un vieux PDF.</h2>
-        <p>L'IA fonctionne très bien pour chacun. Le passage au collectif, lui, bute. On lance un projet documentaire, et quelques mois plus tard les assistants citent une règle périmée. Un expert corrige une réponse, et sa correction reste dans son coin. Et le jour où une équipe partage une mémoire, c'est le dernier qui a parlé qui a raison.</p>
-        <p class="statement__punch">Votre IA n'a pas un problème de mémoire. Elle a un problème de vérité : personne ne tranche.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Garanties -->
-  <section class="band" aria-labelledby="titre-garanties">
-    <div class="container">
-      <div class="section-head">
-        <h2 id="titre-garanties">Vos responsables tranchent, vos IA s'alignent.</h2>
-        <p>Sans projet documentaire à monter : on part de vos documents existants.</p>
-      </div>
-      <ul class="pillars">
-        {pillars.map((pillar) => (
-          <li class="card">
-            <span class="card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                {icons[pillar.icon].map((d) => <path d={d}></path>)}
-              </svg>
-            </span>
-            <h3>{pillar.title}</h3>
-            <p>{pillar.body}</p>
-          </li>
-        ))}
-      </ul>
-      <p class="section-text center">Aucune règle validée ne change sans qu'un responsable l'ait décidé.</p>
-    </div>
-  </section>
-
-  <!-- Comment ça marche: central hub, examples on a loop (public/scripts/hub.js).
-       Without JavaScript or under prefers-reduced-motion everything is visible. -->
+  <!-- Comment ça se passe: three static scenes. The visuals are decorative
+       (aria-hidden): each scene's text carries the meaning. -->
   <section id="fonctionnement" class="band band--white" aria-labelledby="titre-fonctionnement">
     <div class="container">
       <div class="section-head">
-        <h2 id="titre-fonctionnement">Comment ça marche</h2>
+        <h2 id="titre-fonctionnement">Comment ça se passe</h2>
+        <p>Exemple fictif : Brévane, un site industriel de 240 personnes.</p>
       </div>
+      <p class="scenes__prologue">{scenesPrologue}</p>
 
-      <div class="hub" data-hub>
-        <svg class="hub-links" aria-hidden="true" focusable="false">
-          {hubExamples.map((_, i) => (
-            <>
-              <path class="hub-line" data-leg="in" data-example={i + 1}></path>
-              <path class="hub-line" data-leg="out" data-example={i + 1}></path>
-            </>
-          ))}
-          <circle class="hub-dot" r="6"></circle>
-        </svg>
-
-        <div class="hub-zone">
-          <div class="hub-legend">
-            <p class="hub-legend__title">Vos équipes</p>
-            <p class="hub-legend__sub">{assistants.join(", ")}…</p>
+      <ol class="scenes">
+        <li class="scene">
+          <div class="scene__visual scene__visual--pair" aria-hidden="true">
+            <div class="mock">
+              <p class="mock__who">{v.emma}</p>
+              <p class="mock__bubble">{v.emmaSays}</p>
+            </div>
+            <div class="mock mock--wiki">
+              <p class="mock__head">{v.wiki}</p>
+              <p class="mock__rule">{v.wikiRule}</p>
+            </div>
           </div>
-          <ol class="hub-cards">
-            {hubExamples.map((example, i) => (
-              <li class="hub-card hub-card--in" data-example={i + 1}>
-                <span class="hub-bubble" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                </span>
-                <span>
-                  <span class="hub-card__text">{example.input}</span>
-                  {example.detail && <span class="hub-card__detail">{example.detail}</span>}
-                </span>
-              </li>
-            ))}
-          </ol>
-        </div>
+          <h3>{spark.title}</h3>
+          <p>{spark.body}</p>
+        </li>
 
-        <div class="hub-zone hub-zone--core">
-          <div class="hub-core">
-            <p class="hub-core__name">La Petite Boîte IA</p>
-            <p class="hub-core__tag">Mémoire arbitrée</p>
-            <ol class="hub-terms">
-              {hubExamples.map((example, i) => (
-                <li class="hub-term" data-example={i + 1}>{example.term}</li>
+        <li class="scene">
+          <div class="scene__visual scene__visual--pair" aria-hidden="true">
+            <div class="mock">
+              <p class="mock__who">{v.julien}</p>
+              <p class="mock__answer">{v.answer}</p>
+              <p class="badge">{v.inForcePending}</p>
+            </div>
+            <div class="mock">
+              <p class="mock__who">{v.claire}</p>
+              <p class="mock__row"><span class="mock__dot"></span>{v.pendingChange}</p>
+            </div>
+          </div>
+          <h3>{block.title}</h3>
+          <p>{block.body}</p>
+        </li>
+
+        <li class="scene">
+          <div class="scene__visual" aria-hidden="true">
+            <span class="fake-btn">{v.decide}</span>
+            <div class="mock-answers">
+              {v.askers.map((who) => (
+                <div class="mock mock--answer">
+                  <p class="mock__who">{who}</p>
+                  <p class="mock__answer">{v.answer}</p>
+                  <p class="mock__source">{v.source}</p>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
-        </div>
+          <h3>{align.title}</h3>
+          <p>{align.body}</p>
+        </li>
+      </ol>
 
-        <div class="hub-zone">
-          <div class="hub-legend">
-            <p class="hub-legend__title">Ce que vos IA répondent</p>
-          </div>
-          <ol class="hub-cards">
-            {hubExamples.map((example, i) => (
-              <li class="hub-card hub-card--out" data-example={i + 1}>
-                <span class="hub-bubble hub-bubble--out" aria-hidden="true">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M20 6 9 17l-5-5"></path></svg>
-                </span>
-                <span class="hub-card__text">{example.output}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
+      <p class="section-text center">{scenesClosing}</p>
+    </div>
+  </section>
+
+  <!-- Qui ajoute quoi -->
+  <section class="band" aria-labelledby="titre-qui-ajoute">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-qui-ajoute">Seuls les désaccords remontent</h2>
+        <p>On part de vos documents existants, sans projet documentaire.</p>
       </div>
-      <p class="section-text center">Exemple fictif : une tutrice propose 3 arrivants par tuteur, la règle dit 2 depuis un incident. La proposition attend la responsable ; d'ici là, tout le monde reçoit 2.</p>
+      <ul class="pillars">
+        {contributions.map((card) => (
+          <li class="card">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                {icons[card.icon].map((d) => <path d={d}></path>)}
+              </svg>
+            </span>
+            <h3>{card.title}</h3>
+            <p>{card.body}</p>
+          </li>
+        ))}
+      </ul>
+      <p class="section-text center">{contributionsClosing}</p>
     </div>
   </section>
 
@@ -143,22 +135,22 @@ const icons = {
     <div class="container">
       <div class="section-head">
         <h2 id="titre-comparatif">La différence au quotidien</h2>
-        <p>Ce qui change quand deux versions d'une règle s'opposent.</p>
+        <p>Ce qui change quand une règle bouge plus vite que son document.</p>
       </div>
       <div class="table-wrap" tabindex="0" role="region" aria-labelledby="titre-comparatif">
         <table class="compare">
           <thead>
             <tr>
               <th scope="col">Situation</th>
-              <th scope="col">Une mémoire partagée classique</th>
-              <th scope="col" class="compare__us">La Petite Boîte IA</th>
+              <th scope="col">Aujourd'hui</th>
+              <th scope="col" class="compare__us">Avec La Petite Boîte IA</th>
             </tr>
           </thead>
           <tbody>
             {comparisons.map((row) => (
               <tr>
                 <th scope="row">{row.situation}</th>
-                <td>{row.assistant}</td>
+                <td>{row.today}</td>
                 <td class="compare__us">{row.lpbia}</td>
               </tr>
             ))}
@@ -168,16 +160,74 @@ const icons = {
     </div>
   </section>
 
-  <!-- Premiers pilotes -->
-  <section class="band band--line" aria-labelledby="titre-pilotes">
+  <!-- Pour qui -->
+  <section class="band" aria-labelledby="titre-pour-qui">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-pour-qui">Partout où une règle bouge plus vite que son document</h2>
+      </div>
+      <ul class="pillars">
+        {terrains.map((terrain) => (
+          <li class="card">
+            <h3>{terrain.name}</h3>
+            <p>{terrain.scene}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Prix: Enterprise first in the source, so first on phones and left on wide screens. -->
+  <section id="prix" class="band band--white" aria-labelledby="titre-prix">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="titre-prix">Un prix fixe. Celui qui tranche ne se paie jamais.</h2>
+        <p>Responsables illimités dans les deux offres. Abonnement annuel, réglé à l'année ou au trimestre, au même prix.</p>
+      </div>
+      <ul class="offers">
+        {offers.map((offer) => (
+          <li class:list={["offer", { "offer--dark": offer.featured }]}>
+            <p class="offer__label">{offer.label}</p>
+            <h3 class="offer__name">{offer.name}</h3>
+            <p class="offer__price">{offer.price}</p>
+            <p class="offer__detail">{offer.priceDetail}</p>
+            <dl class="offer__facts">
+              <div>
+                <dt>{offerLabels.where}</dt>
+                <dd>{offer.where}</dd>
+              </div>
+              <div>
+                <dt>{offerLabels.setup}</dt>
+                <dd>{offer.setup}</dd>
+              </div>
+              {offer.extra && (
+                <div>
+                  <dt>{offerLabels.extra}</dt>
+                  <dd>{offer.extra}</dd>
+                </div>
+              )}
+            </dl>
+            <a class="btn btn--primary offer__cta" href={demoUrl} target="_blank" rel="noopener noreferrer">{offer.cta}</a>
+          </li>
+        ))}
+      </ul>
+      <div class="offers__notes">
+        <p>{pricingTokens}</p>
+        <p class="offers__reassurance">{pricingReassurance}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Où nous en sommes -->
+  <section class="band band--line" aria-labelledby="titre-beta">
     <div class="container container--text center">
-      <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Premiers pilotes</p>
-      <h2 id="titre-pilotes">Où nous en sommes</h2>
+      <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Bêta</p>
+      <h2 id="titre-beta">La Bêta est disponible</h2>
       <p class="section-text">
-        La démo est prête. Nous lançons nos premiers pilotes avec des directions RH, conformité et méthodes, sur leurs propres règles.
+        Démarrez sur une direction RH, conformité ou méthodes, avec vos propres règles. Ce qui n'est pas encore construit vous est dit au futur, sans date.
       </p>
       <div class="actions">
-        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Rejoindre les premiers pilotes</a>
+        <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Voir la démo en 30 minutes</a>
       </div>
     </div>
   </section>
@@ -187,7 +237,7 @@ const icons = {
     <div class="container container--faq">
       <div class="section-head">
         <h2 id="titre-faq">Questions fréquentes</h2>
-        <p>Tout ce que vous devez savoir avant de rejoindre les premiers pilotes.</p>
+        <p>Ce qu'on nous demande avant de démarrer.</p>
       </div>
       <div class="faq">
         {questions.map((item) => (
@@ -206,13 +256,13 @@ const icons = {
   <!-- CTA final -->
   <section id="demo" class="band band--glow band--line" aria-labelledby="titre-demo">
     <div class="container container--narrow center">
-      <h2 id="titre-demo" class="cta-title">Voyez-la trancher</h2>
+      <h2 id="titre-demo" class="cta-title">Voyez Claire décider</h2>
       <p class="section-text">
         Une tutrice, une règle, une responsable qui décide : la démo complète en 30 minutes.
       </p>
       <div class="actions">
         <a class="btn btn--primary" href={demoUrl} target="_blank" rel="noopener noreferrer">Réserver la démo</a>
-        <a class="btn btn--secondary" href="#fonctionnement">Revoir le fonctionnement</a>
+        <a class="btn btn--secondary" href="#fonctionnement">Revoir comment ça se passe</a>
       </div>
     </div>
   </section>

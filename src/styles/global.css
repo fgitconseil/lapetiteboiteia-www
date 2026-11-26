@@ -431,61 +431,6 @@ a {
   }
 }
 
-/* ---------- Statement (Le constat) ---------- */
-.statement {
-  max-width: none;
-  padding: 2rem 1.5rem;
-  border-radius: var(--radius-xl);
-  background: linear-gradient(135deg, var(--prune), var(--prune-2));
-  color: var(--on-dark);
-  box-shadow: var(--shadow-l);
-}
-
-.statement > * {
-  max-width: 48rem;
-}
-
-.statement p {
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--brume);
-}
-
-.statement .eyebrow {
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  color: var(--braise);
-}
-
-.band .statement__title {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  line-height: 1.3;
-  font-weight: 700;
-  color: var(--on-dark);
-}
-
-.statement .statement__punch {
-  margin-bottom: 0;
-  font-weight: 700;
-  color: var(--on-dark);
-}
-
-@media (min-width: 768px) {
-  .statement {
-    padding: 3rem;
-  }
-
-  .statement p {
-    font-size: 1.125rem;
-  }
-
-  .band .statement__title {
-    font-size: 1.875rem;
-  }
-}
-
 /* ---------- Pillars ---------- */
 .pillars {
   display: grid;
@@ -533,229 +478,328 @@ a {
   color: var(--muted-foreground);
 }
 
-/* ---------- Hub (Comment ça marche) ----------
- * Three zones: questions, hub, answers. Stacked below 1024px, side by side
- * above. Cards are offset, not in a straight column.
- *
- * The dimmed state, the links and the dot only exist under html[data-flux]
- * (set by public/scripts/hub.js) and outside prefers-reduced-motion.
- * Dimmed stays readable: opacity 0.62 on ink keeps AA on white. Only opacity,
- * border and shadow change, never size or position. */
-.hub {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  row-gap: 3rem;
-}
-
-.hub-links {
-  display: none;
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hub-zone {
-  position: relative;
-  z-index: 1;
-}
-
-.hub-legend {
-  margin-bottom: 1rem;
+/* ---------- Scenes (Comment ça se passe) ----------
+ * Three static scenes, stacked on phones, side by side from 1024px. Each
+ * visual is a small HTML mock-up, aria-hidden: the scene text carries the
+ * meaning. Nothing in a mock-up is interactive. */
+.scenes__prologue {
+  max-width: 42rem;
+  margin: 0 auto 2.5rem;
   text-align: center;
+  font-size: 1.125rem;
+  color: var(--foreground);
 }
 
-.hub-legend__title {
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
-
-.hub-legend__sub {
-  margin-top: 0.25rem;
-  font-size: 0.875rem;
-  color: var(--muted-foreground);
-}
-
-.hub-cards {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
+.scenes {
+  display: grid;
+  gap: 2.5rem;
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.hub-card {
+@media (min-width: 1024px) {
+  .scenes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.scene h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.scene > p {
+  color: var(--muted-foreground);
+}
+
+.scene__visual {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
   gap: 0.75rem;
-  padding: 0.875rem 1rem;
-  background: var(--card);
+  padding: 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--background);
+}
+
+/* Two mock-ups side by side only while a scene spans the full width
+ * (480px to 1023px); stacked on small phones and in the three columns. */
+.scene__visual--pair {
+  display: grid;
+  align-items: start;
+}
+
+@media (min-width: 480px) and (max-width: 1023px) {
+  .scene__visual--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.mock {
+  min-width: 0;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--border);
   border-radius: var(--radius-l);
+  background: var(--card);
   box-shadow: var(--shadow-s);
-  transition: opacity 400ms ease, border-color 400ms ease, box-shadow 400ms ease;
 }
 
-/* Modest offset when stacked: it keeps the links' gutter free. */
-.hub-card:nth-child(odd) {
-  margin: 0 1.25rem 0 0.75rem;
+.mock__who {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
 }
 
-.hub-card:nth-child(even) {
-  margin: 0 0 0 2rem;
-}
-
-.hub-card__text {
-  display: block;
-  font-size: 0.875rem;
+.mock__bubble {
+  margin-top: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-m);
+  background: var(--muted);
+  color: var(--foreground);
+  font-size: 0.9375rem;
   line-height: 1.4;
+}
+
+.mock--wiki {
+  background: var(--muted);
+}
+
+.mock__head {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted-foreground);
+}
+
+.mock__rule {
+  margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
   color: var(--foreground);
 }
 
-.hub-card__detail {
-  display: block;
+.mock__answer {
   margin-top: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--foreground);
+}
+
+.badge {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-pill);
+  background: var(--success-subtle);
+  color: var(--success);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.mock__row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.mock__dot {
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--braise);
+}
+
+/* Looks like .btn--primary, but it is a span: no focus, no pointer. */
+.fake-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--braise-ink);
+  border-radius: var(--radius-s);
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 10px 24px -12px var(--braise-glow);
+  cursor: default;
+  user-select: none;
+}
+
+.mock-answers {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.mock--answer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.75rem;
+  padding: 0.5rem 1rem;
+}
+
+.mock--answer .mock__answer {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.mock__source {
+  flex-basis: 100%;
   font-size: 0.75rem;
   color: var(--muted-foreground);
 }
 
-.hub-bubble {
-  flex: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: var(--radius-pill);
-  background: var(--braise-soft);
-  color: var(--braise-ink);
-}
-
-.hub-bubble--out {
-  background: var(--success-subtle);
-  color: var(--success);
-}
-
-.hub-core {
-  padding: 1.75rem 1.5rem;
-  border-radius: var(--radius-xl);
-  background: var(--prune);
-  text-align: center;
-  box-shadow: var(--shadow-l);
-}
-
-.hub-core__name {
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--on-dark);
-}
-
-.hub-core__tag {
-  margin-top: 0.25rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--braise);
-}
-
-.hub-terms {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin: 1.25rem 0 0;
+/* ---------- Offers (Prix) ----------
+ * Enterprise comes first in the source: first on phones, left from 768px. */
+.offers {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 64rem;
+  margin: 0 auto;
   padding: 0;
   list-style: none;
 }
 
-.hub-term {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--on-dark-border);
-  border-radius: var(--radius-m);
-  background: var(--on-dark-fill);
-  color: var(--on-dark);
+@media (min-width: 768px) {
+  .offers {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.offer {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--card);
+  box-shadow: var(--shadow-s);
+}
+
+.offer__label {
+  align-self: flex-start;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--braise-ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.offer__name {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.offer__price {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.offer__detail {
+  margin-top: 0.25rem;
+  color: var(--muted-foreground);
+}
+
+.offer__facts {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.offer__facts dt {
   font-size: 0.875rem;
   font-weight: 700;
-  transition: opacity 400ms ease, background-color 400ms ease, border-color 400ms ease, box-shadow 400ms ease, color 400ms ease;
+  color: var(--muted-foreground);
 }
 
-.hub-line {
-  fill: none;
-  stroke: var(--brume);
-  stroke-opacity: 0.6;
-  stroke-width: 1.5;
-  stroke-dasharray: 4 6;
-  transition: stroke 400ms ease, stroke-opacity 400ms ease;
+.offer__facts dd {
+  margin: 0.25rem 0 0;
+  color: var(--foreground);
 }
 
-.hub-dot {
-  fill: var(--braise);
-  opacity: 0;
-  filter: drop-shadow(0 0 6px var(--braise));
+.offer__cta {
+  margin-top: auto;
 }
 
-@media (min-width: 1024px) {
-  .hub {
-    grid-template-columns: minmax(0, 1fr) 17rem minmax(0, 1fr);
-    column-gap: 6rem;
-    align-items: center;
-  }
-
-  .hub-legend {
-    text-align: left;
-  }
-
-  /* Side by side, a bolder offset: four steps, not a column. */
-  .hub-card:nth-child(1) { margin: 0 3rem 0 0; }
-  .hub-card:nth-child(2) { margin: 0 0.5rem 0 2.5rem; }
-  .hub-card:nth-child(3) { margin: 0 2rem 0 1rem; }
-  .hub-card:nth-child(4) { margin: 0 0 0 3.5rem; }
+/* Solid prune, not the gradient: the text pairs are the ones checked on --prune. */
+.offer--dark {
+  border-color: var(--prune-border);
+  background: var(--prune);
+  box-shadow: var(--shadow-l);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html[data-flux] .hub-links {
-    display: block;
+.offer--dark .offer__label {
+  border-color: var(--on-dark-border);
+  background: transparent;
+  color: var(--braise);
+}
+
+.offer--dark .offer__name,
+.offer--dark .offer__price,
+.offer--dark .offer__facts dd {
+  color: var(--on-dark);
+}
+
+.offer--dark .offer__detail,
+.offer--dark .offer__facts dt {
+  color: var(--brume);
+}
+
+.offer--dark .offer__facts {
+  border-top-color: var(--on-dark-border);
+}
+
+.offer--dark :focus-visible {
+  outline-color: var(--braise);
+}
+
+.offers__notes {
+  max-width: 48rem;
+  margin: 2.5rem auto 0;
+  text-align: center;
+  color: var(--muted-foreground);
+}
+
+.offers__reassurance {
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .offer {
+    padding: 2.5rem;
   }
 
-  html[data-flux] .hub-card {
-    opacity: 0.62;
-  }
-
-  /* Muted text at 0.62 falls to 2.75:1; ink at 0.62 keeps 4.73:1. */
-  html[data-flux] .hub-card:not([data-active]) .hub-card__detail {
-    color: var(--foreground);
-  }
-
-  html[data-flux] .hub-card[data-active] {
-    opacity: 1;
-    border-color: var(--braise);
-    box-shadow: 0 0 0 3px var(--braise-glow), var(--shadow-m);
-  }
-
-  html[data-flux] .hub-term {
-    opacity: 0.6;
-  }
-
-  html[data-flux] .hub-term[data-active] {
-    opacity: 1;
-    color: var(--on-braise);
-    background: var(--braise);
-    border-color: var(--braise-soft);
-    box-shadow: 0 0 24px var(--braise-glow);
-  }
-
-  html[data-flux] .hub-line[data-active] {
-    stroke: var(--braise);
-    stroke-opacity: 0.9;
+  .offer__price {
+    font-size: 2rem;
   }
 }
 

@@ -5,8 +5,7 @@ Static Astro site (D329). Output is plain files in `dist/`.
 
 ## Rules
 - Code, comments, commit messages, file names: English.
-- Site copy: French, exactly as in the source landing
-  (`../LaPetiteBoiteIA/gabarits/landing.html`). Do not rewrite it.
+- Site copy: French, exactly as in docs/site-accueil-copy-v2.md (§ 2). Do not rewrite it.
 - No em-dashes in copy we write. Use a colon, a comma or a full stop.
 - Pages and components use only the CSS variables of `src/styles/tokens.css`.
   No raw colour, font or radius values elsewhere. Bump the version in its
